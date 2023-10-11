@@ -18,9 +18,12 @@
 </div>
 
 <div class="BopiInfo">
-    <button id="yeaclosethisplease">CLOSE!</button>
-<div style="width:100%"><h1 shadow="latest updates">latest updates</h1></div>
+    <button id="yeaclosethisplease" style="left:10px;top:10px;">CLOSE!</button>
+<div style="width:100%"><h1 shadow="latest updates" id="infotitle">latest updates</h1></div>
 <div class="InfoContainer"> 
+</div>
+<div class="ResourceContainer">
+    <button id="yeaclosethisplease2" style="right:10px;top:10px;">GO BACK!</button>
 </div>
 </div>
 
@@ -44,13 +47,49 @@
         column-gap: 20px;
         row-gap: 10px;
         height: 200px;
+        position:relative;
         padding:10px;
         text-align: left;
         border-radius:5px;
         transition: 0.3s ease;
     }
 
-    .NewsSection:hover {
+    .ResourceSection {
+        display: grid;
+        grid-template-rows: 200px 1fr;
+        row-gap: 10px;
+        height: 250px;
+        position:relative;
+        padding:10px;
+        text-align: left;
+        justify-items: center;
+        border-radius:5px;
+        transition: 0.3s ease;
+    }
+
+    .ResourceSection img {
+        height:200px;
+        border:1px solid white;
+        transition: 0.3s ease;
+    }   
+    
+    .ResourceSection video {
+        height:200px;
+        transition: 0.3s ease;
+    }   
+
+    .ResourceSection img:hover {
+        transition: 0.3s ease;
+        border:4px solid #7014AD;
+        cursor:pointer;
+        transform:scale(1.2);
+    }
+
+    .ResourceSection img::after {
+        content:"hi";
+    }
+
+    .NewsSection:hover{
         transition: 0.3s ease;
         background:rgba(65, 0, 112, 0.712);
     }
@@ -173,10 +212,19 @@
         height:inherit;
     }
 
+    .ResourceContainer {
+        display: none;
+        overflow-y:auto;
+        padding:20px;
+        height:inherit;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2%;
+        row-gap: 2%;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+
     button {
         position: absolute;
-        left: 10px;
-        top: 10px;
         padding: 5px 15px 5px 15px;
         background: #9218E3;
         color: white;
@@ -255,12 +303,19 @@
                 "date" : "Oct 02 2023",
                 "desc" : "It's announced that Bopimo will release with a halloween event, though likely not in October it will be available directly at launch regardless.",
                 "pic" : "https://pbs.twimg.com/media/F7ds6dNXYAAFZH5?format=jpg&name=medium",
+                "resources": {
+                    "Twitter Attachment" : ["https://pbs.twimg.com/media/F7ds6dNXYAAFZH5?format=jpg&name=medium","image"],
+                }
             },
             {
                 "title": "Beta Testing Began",
                 "date" : "Sept 10 2023",
                 "desc" : "After months (or years for certain members) of speculation and promise the beta testing build was finally given out and select users started looking for bugs in the game.",
                 "pic" : "https://media.discordapp.net/attachments/710993176697110599/1161446568273121531/0ad003d4-17b7-4045-b7be-34b13bca7712.png?ex=65385468&is=6525df68&hm=401d37a259766e9b4f92a4cb8669fdff70afe44eda22338e93d71c0214e3860a&=",
+                "resources": {
+                    "Exclusive Beta Tester Drip" : ["https://media.discordapp.net/attachments/668151603269730304/1161525931182137384/image.png","image"],
+                    "Beta Testing in action" : ["https://cdn.discordapp.com/attachments/711008358815236147/1155268077471137884/Hidden_Secret.mp4","video"],
+                }
             },
             {
                 "title": "Bopi-soundtrack Teasers",
@@ -353,6 +408,8 @@
 
     document.getElementById("yeaclosethisplease").addEventListener("click", closeTheDangInfo);
 
+    document.getElementById("yeaclosethisplease2").addEventListener("click", closeTheResources);
+
     function showMoreInfo() { // shows the bopi news!
         document.getElementsByClassName("BopiInfo")[0].style.left = "10%";
         document.getElementsByClassName("LandingCounter")[0].style.filter = "blur(5px)";
@@ -383,10 +440,6 @@
 
             var newTitle = document.createElement("h2");
 
-            console.log(newsData["news"][i]["date"]);
-            console.log(calculateSince(newsData["news"][i]["date"]));
-
-
             newTitle.setAttribute("timesince",calculateSince(newsData["news"][i]["date"]) + " days ago");
             newTitle.innerHTML = newsData["news"][i]["title"];
 
@@ -397,9 +450,76 @@
             newDesc.style.gridColumn = 2;
 
             newPost.appendChild(newDesc);
+
+
+            if (newsData["news"][i]["resources"]) {
+                var newButton = document.createElement("button");
+                newButton.addEventListener("click", function(){openResources(i);});
+                newButton.innerHTML = "SEE MORE";
+                newButton.style.right = "10px";
+                newButton.style.bottom = "10px";
+                newPost.appendChild(newButton);
+            }
         
             document.getElementsByClassName("InfoContainer")[0].appendChild(newPost);
 
         }
     }
+
+    function closeTheResources() { // remove resources tab
+        document.getElementsByClassName("InfoContainer")[0].style.display = "grid";
+        document.getElementsByClassName("ResourceContainer")[0].style.display = "none";
+
+        document.getElementById("infotitle").innerHTML = "latest updates";
+        document.getElementById("infotitle").setAttribute("shadow","latest updates")
+
+        var paras = document.getElementsByClassName('hi');
+
+        while(document.getElementsByClassName('ResourceSection')[0]) {
+            document.getElementsByClassName("ResourceContainer")[0].removeChild(document.getElementsByClassName('ResourceSection')[0]);
+        }
+    }
+
+    function openResources(index) { // check out resources of news section
+        document.getElementsByClassName("InfoContainer")[0].style.display = "none";
+        document.getElementsByClassName("ResourceContainer")[0].style.display = "grid";
+
+        document.getElementById("infotitle").innerHTML = newsData["news"][index]["title"] + " resources";
+        document.getElementById("infotitle").setAttribute("shadow",newsData["news"][index]["title"] + " resources")
+
+        for (resource in newsData["news"][index]["resources"]) {
+            var newResource = document.createElement("div");
+            newResource.className = "ResourceSection";
+            if (newsData["news"][index]["resources"][resource][1] == "image") {
+                var newSource = document.createElement("img");
+                newSource.src = newsData["news"][index]["resources"][resource][0];
+
+
+                
+                newResource.appendChild(newSource);
+                newResource.addEventListener("click", function(){window.open(this.getElementsByTagName("img")[0].src)});
+            }
+
+            if (newsData["news"][index]["resources"][resource][1] == "video") {
+                var newSource = document.createElement("video");
+                newSource.setAttribute("controls","controls")  
+                newSource.src = newsData["news"][index]["resources"][resource][0];
+
+                newResource.appendChild(newSource);
+            }
+
+            var newTitle = document.createElement("h2");
+            newTitle.innerHTML = resource;
+            newTitle.setAttribute("timesince",newsData["news"][index]["resources"][resource][1])
+
+            newResource.appendChild(newTitle);
+            
+
+            document.getElementsByClassName("ResourceContainer")[0].appendChild(newResource);
+            
+        }
+
+    }
+
+
 </script>
