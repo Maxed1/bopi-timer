@@ -1,0 +1,384 @@
+<!-- oh hey look it's my code, why are you reading it? i'm not sure. -->
+
+<div class="LandingCounter">
+    
+    <div style="width:100%;position: fixed;top: 3vh;text-align:center">
+    <div class="lilLogo"><a href="https://www.bopimo.com/"><img src="https://www.bopimo.com/assets/media/logo.png" loading="lazy"></a></div>
+    <h1 shadow="was announced:"> was announced:</h1>
+
+    </div>
+        
+    <div class="sleepingBop"></div>
+
+    <div style="width:100%;position: fixed;bottom: 4vh;text-align:center"><h1 shadow="days ago">days ago</h1></div>
+</div>
+
+<div class="BopiInfo">
+    <button id="yeaclosethisplease">CLOSE!</button>
+<div style="width:100%"><h1 shadow="latest updates">latest updates</h1></div>
+<div class="InfoContainer"> 
+</div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+    .lillogo img {
+        height:150px;
+        transition: 0.3s ease;
+    }
+
+    .lillogo img:hover {
+        transition: 0.3s ease;
+        transform: scale(1.1);
+    }
+
+    .NewsSection {
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        grid-template-columns: 200px 1fr;
+        column-gap: 20px;
+        row-gap: 10px;
+        height: 200px;
+        padding:10px;
+        text-align: left;
+        border-radius:5px;
+        transition: 0.3s ease;
+    }
+
+    .NewsSection:hover {
+        transition: 0.3s ease;
+        background:rgba(65, 0, 112, 0.712);
+    }
+
+    .NewsPicture {
+        border:white 1px solid;
+        border-radius:10px;
+        width:200px;
+        height:200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    h1::after {
+        color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke: 8px black;
+    position: relative;
+    left: inherit;
+    display: block;
+    top: -40px;
+    z-index: -1;
+    content: attr(shadow);
+    }
+
+    h2::after {
+        content: attr(timesince);
+        color: gray;
+        font-size: 70%;
+        margin-left: 10px;
+    }
+
+    .sleepingBop {
+        cursor:pointer;
+        transition: 0.3s ease;
+    }
+
+    .sleepingBop::before {
+        content: "click me!";
+        width: 100%;
+        display: block;
+        text-align: center;
+        opacity: 0.5;
+        top: 20%;
+        position: relative;
+    }
+
+    .sleepingBop:hover {
+        filter:brightness(1.2)drop-shadow(0px 10px 10px black);
+        transform:scale(1.1);
+    }
+
+    h1 {
+        position:relative;
+    }
+
+    body {
+    color:white;
+    font-family: 'Quicksand', sans-serif;
+    }
+
+    a {
+        color:#b45af0;
+        text-decoration: none;
+    }
+
+    .LandingCounter {
+        width:100%;
+        height:100%;
+        background: url("assets/LandingBackground.png");
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position: center center;
+        filter:contrast(1.2);
+    }
+
+    .sleepingBop {
+        width: 20vw;
+        position: absolute;
+        height: 20vw;
+        background: url(assets/bopsleep.gif);
+        background-size: cover;
+        filter: drop-shadow(0px 10px 10px black);
+        background-repeat: no-repeat;
+        bottom: 10vh;
+        background-position: center center;
+    }
+
+    html, .BopiInfo {
+        background-color: #111;
+        background-image: url(https://www.bopimo.com/assets/media/checkers.png);
+        background-repeat: repeat;
+        animation: scrolling 15s linear 1;
+        animation-direction: forward;
+        animation-iteration-count: infinite;
+    }
+
+    .BopiInfo {
+        width: 80%;
+        height: 80%;
+        z-index: 2;
+        position: fixed;
+        border-radius: 10px;
+        top: 10%;
+        text-align:center;
+        left: 110%;
+        transition: left 0.3s ease;
+        padding:20px;
+    }
+
+    .InfoContainer {
+        display: grid;
+        grid-template-columns: 49% 49%;
+        column-gap: 2%;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        row-gap: 2%;
+        overflow-y:auto;
+        padding:20px;
+        height:inherit;
+    }
+
+    button {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        padding: 5px 15px 5px 15px;
+        background: #9218E3;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 3px solid #7014AD;
+        font-size: 120%;
+        font-family: 'Quicksand', sans-serif;
+        transition: 0.3s ease;
+    }
+
+    button:hover {
+        transition: 0.3s ease;
+        filter:brightness(1.1);
+    }
+
+    @keyframes scrolling  { 
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: -140px 140px;
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .LandingCounter {
+            background-position: center top;
+            background-size:inherit;
+            height:50vh;
+        }
+
+        .sleepingBop {
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            bottom: -100%;
+        }
+
+        .InfoContainer {
+            grid-template-columns: 100%;
+        }
+
+        button {
+            font-size:300%;
+        }
+
+
+    }
+    
+</style>
+
+<script>
+
+    var newsData = { // all the news data is here, pretty self explanatory i guess..
+        "news" : [
+            {
+                "title": "Halloween is real (eventually)",
+                "date" : "Oct 02 2023",
+                "desc" : "It's announced that Bopimo will release with a halloween event, though likely not in October it will be available directly at launch regardless.",
+                "pic" : "https://pbs.twimg.com/media/F7ds6dNXYAAFZH5?format=jpg&name=medium",
+            },
+            {
+                "title": "Beta Testing Began",
+                "date" : "Sept 10 2023",
+                "desc" : "After months (or years for certain members) of speculation and promise the beta testing build was finally given out and select users started looking for bugs in the game.",
+                "pic" : "https://media.discordapp.net/attachments/710993176697110599/1161446568273121531/0ad003d4-17b7-4045-b7be-34b13bca7712.png?ex=65385468&is=6525df68&hm=401d37a259766e9b4f92a4cb8669fdff70afe44eda22338e93d71c0214e3860a&=",
+            },
+            {
+                "title": "Bopi-soundtrack Teasers",
+                "date" : "Dec 28 2022",
+                "desc" : "The sought-after banging toons of Bopimo begin to release with a single named <a href='https://soundcloud.com/bopimo/swaying-dreams'>Swaying Dreams</a> being published",
+                "pic" : "https://i1.sndcdn.com/artworks-RKRB6PN0m8ORyLqj-iQyCug-t500x500.jpg",
+            },
+            {
+                "title": "Second blog post (now deleted)",
+                "date" : "Sep 08 2021",
+                "desc" : "A blog post was once available detailing the process bopimo was going through and asking for more developers to work on the project.",
+                "pic" : "https://blog.bopimo.com/content/images/2021/09/cover.png",
+            },
+            {
+                "title": "First Blog Post",
+                "date" : "Jul 03 2021",
+                "desc" : "A blog post was released which can be found <a href='https://blog.bopimo.com/welcome-to-the-bopimo-blog/'>here</a> detailing what's to come to Bopimo.",
+                "pic" : "https://blog.bopimo.com/content/images/2021/11/1x.png",
+            },
+            {
+                "title": "Rolling Fun",
+                "date" : "May 26 2021",
+                "desc" : "A youtube video was posted which can be fonud <a href='https://www.youtube.com/watch?v=mgTntP62Jdw'>here</a> showing off the fun rolling mechanics of the game",
+                "pic" : "https://i.ytimg.com/vi/mgTntP62Jdw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBepsjWW7qAqIL-VAB2AQhP07ARMA",
+            },
+            {
+                "title": "Social Media accounts moved",
+                "date" : "Mar 30 2021",
+                "desc" : "All previous content on the bopimo social medias was deleted and new bopimo accounts were established, they remain to this day.",
+                "pic" : "https://pbs.twimg.com/media/FHes2jLXsAYvBcu?format=jpg&name=large",
+            },
+            {
+                "title": "Item Reveal Promotions",
+                "date" : "Aug 10 2020",
+                "desc" : "From August 10th to 31st, the twitter account posted a new item that users will be able to purhcase at some point during the site's release",
+                "pic" : "https://media.discordapp.net/attachments/618603378616041482/742829460352401428/Number1.png?ex=65381d58&is=6525a858&hm=7f6438a93106f9d453c3299eeb8ceebd73bc7421d7703a0efb3e77303d18f762&=",
+            },
+            {
+                "title": "Meet The Bopi",
+                "date" : "Jul 26 2020",
+                "desc" : "A youtube video was posted which can be fonud <a href='https://www.youtube.com/watch?v=7PtNGkg2XVM'>here</a> which revealed the iconic Bopi as well as generally Bopimo has a whole for the first time!",
+                "pic" : "https://i.ytimg.com/vi/7PtNGkg2XVM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBVucpxjKJpCZI5GoiBWzPr7SE65g",
+            },
+            {
+                "title": "Puzzle Piece Reveal Promotions",
+                "date" : "Jun 01 2020",
+                "desc" : "From June 1st to 7th, the twitter account would begin posting parts of a picture of a house built within Bopimo, this would eventually lead into the Meet The Bopi teaser.",
+                "pic" : "https://media.discordapp.net/attachments/618603378616041482/742833265030987856/PuzzleFullUnglitched.png?ex=653820e3&is=6525abe3&hm=b0d422dfa8f30250638fd10cdbec71d185f004dba2284779801e1fe18c11ccf8&=&width=1269&height=676",
+            },
+
+
+        ]
+    }
+        
+    function countdownText(newNumber) { // sets countdown's images (block nums)
+        var countdownNumbers = newNumber.toString().split('').map(Number); 
+        var finalBackground = "";
+        
+        for (let currentDigit = 0; currentDigit < countdownNumbers.length; currentDigit++) {
+            finalBackground += "url('" + "assets/" + (currentDigit + 1) + "-" + countdownNumbers[currentDigit] + ".png'), ";
+        }
+
+        finalBackground += "url('assets/LandingBackground.png')";
+
+        document.getElementsByClassName("LandingCounter")[0].style.backgroundImage = finalBackground;
+    }
+
+    function calculateSince(givenDate) {
+        var startTime = new Date(givenDate);
+        var day_end = new Date();
+        var total_days = (day_end - startTime) / (1000 * 60 * 60 * 24);
+        return total_days.toFixed(0);
+    }
+
+    var epicNumber = calculateSince("May 18 2020"); // how many days it's been since BOPIMO! was revealed.
+
+    countdownText(epicNumber); 
+
+    let counts = setInterval(updated,100); // makes the cool counting up effect when u first open the site
+        let upto = epicNumber - 10;
+        function updated() {
+            countdownText(upto);
+            ++upto;
+            if (upto > epicNumber - 1) {
+                clearInterval(counts);
+            }
+    }
+
+    document.getElementsByClassName("sleepingBop")[0].addEventListener("click", showMoreInfo);
+
+    document.getElementById("yeaclosethisplease").addEventListener("click", closeTheDangInfo);
+
+    function showMoreInfo() { // shows the bopi news!
+        document.getElementsByClassName("BopiInfo")[0].style.left = "10%";
+        document.getElementsByClassName("LandingCounter")[0].style.filter = "blur(5px)";
+        document.getElementsByClassName("LandingCounter")[0].style.pointerEvents = "none";
+    }
+
+    function closeTheDangInfo() { // hides dat shid
+        document.getElementsByClassName("BopiInfo")[0].style.left = "110%";
+        document.getElementsByClassName("LandingCounter")[0].style.filter = "contrast(1.2)";
+        document.getElementsByClassName("LandingCounter")[0].style.pointerEvents = "all";
+    }
+
+    
+
+    fillNews();
+
+    function fillNews() { // creates the bopi news ^-^
+        for (let i = 0; i < newsData["news"].length; i++) {
+            var newPost = document.createElement("div");
+            newPost.className = "NewsSection";
+
+            var newImage = document.createElement("div");
+            newImage.className = "NewsPicture";
+
+            newImage.style.backgroundImage = "url('" + newsData["news"][i]["pic"] + "')";
+
+            newPost.appendChild(newImage);
+
+            var newTitle = document.createElement("h2");
+
+            console.log(newsData["news"][i]["date"]);
+            console.log(calculateSince(newsData["news"][i]["date"]));
+
+
+            newTitle.setAttribute("timesince",calculateSince(newsData["news"][i]["date"]) + " days ago");
+            newTitle.innerHTML = newsData["news"][i]["title"];
+
+            newPost.appendChild(newTitle);
+
+            var newDesc  = document.createElement("p");
+            newDesc.innerHTML = newsData["news"][i]["desc"];
+            newDesc.style.gridColumn = 2;
+
+            newPost.appendChild(newDesc);
+        
+            document.getElementsByClassName("InfoContainer")[0].appendChild(newPost);
+
+        }
+    }
+</script>
