@@ -1,5 +1,9 @@
 <!-- oh hey look it's my code, why are you reading it? i'm not sure. -->
 
+<title>bopi timer</title>
+<meta name="title" content="bopi timer" />
+<meta name="description" content="a website that shows stats abt bopimo not being done" />
+
 <div class="LandingCounter">
     
     <div style="width:100%;position: fixed;top: 3vh;text-align:center">
@@ -189,6 +193,15 @@
         filter:brightness(1.1);
     }
 
+    @keyframes scrolling  { 
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: -140px 140px;
+        }
+    }
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -204,15 +217,6 @@
     
     ::-webkit-scrollbar-thumb:hover {
       background: #7014AD; 
-    }
-
-    @keyframes scrolling  { 
-        0% {
-            background-position: 0 0;
-        }
-        100% {
-            background-position: -140px 140px;
-        }
     }
 
     @media only screen and (max-width: 1000px) {
@@ -240,7 +244,7 @@
 
     }
     
-</style>
+    </style>
 
 <script>
 
